@@ -6,15 +6,22 @@ const defaultProps = {
     rightIcon: '>',
     children: [1, 2, 3, 4, 5],
     interval: 3000,
+    style: {},
+    iconStyle: {},
     onLeftClick: d => d,
     onRightClick: d => d,
-};
+    // goLeft: d => this.goLeft(),
+    // goRight: d => this.goRight(),
+    // gotoIndex: index => this.changeIndex(index)
+}
 
 export class SlideshowLight extends Component {
+
     constructor() {
         super();
         this.state = { currElemIndex: 0 };
     }
+
 
     componentDidMount() {
         this.startTimer();
@@ -48,6 +55,10 @@ export class SlideshowLight extends Component {
 
     changeIndex(diff) {
         let val = this.state.currElemIndex + diff;
+        this.changeIndex(val);
+    }
+
+    changeIndex(val) {
         if (val < 0) {
             val = this.props.children.length - 1;
         } else if (val === this.props.children.length) {
